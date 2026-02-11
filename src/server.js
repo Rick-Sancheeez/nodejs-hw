@@ -3,7 +3,7 @@ import cors from 'cors';
 import 'dotenv/config';
 
 import {connectMongoDB} from './db/connectMongoDB.js';
-import notesRouter from './routes/noteRoutes.js';
+import notesRouter from './routes/notesRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
