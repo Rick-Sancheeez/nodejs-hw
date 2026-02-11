@@ -2,11 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 
-import {connectMongoDB} from './db/connectMongoDB';
-import {notesRouter} from './routes/noteRoutes';
-import { errorHandler } from './middleware/errorHandler';
-import { logger } from './middleware/logger';
-import { notFoundHandler } from './middleware/notFoundHandler';
+import {connectMongoDB} from './db/connectMongoDB.js';
+import notesRouter from './routes/noteRoutes.js';
+import { errorHandler } from './middleware/errorHandler.js';
+import { logger } from './middleware/logger.js';
+import { notFoundHandler } from './middleware/notFoundHandler.js';
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -20,10 +20,6 @@ app.get('/', (req, res) => {
 });
 
 app.use(notesRouter); 
-
-app.use((req, res) => {
-  res.status(404).json({ message: 'Route not found' });
-});
 
 app.use(notFoundHandler);
 
