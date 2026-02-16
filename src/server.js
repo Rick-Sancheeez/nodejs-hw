@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
+import { errors } from 'celebrate';
 
 import {connectMongoDB} from './db/connectMongoDB.js';
 import notesRoutes from './routes/notesRoutes.js';
@@ -27,6 +28,7 @@ app.use(errorHandler);
 
 await connectMongoDB();
 
+app.use(errors());
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
