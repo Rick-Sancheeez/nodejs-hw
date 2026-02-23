@@ -5,6 +5,9 @@ import { errors } from 'celebrate';
 
 import {connectMongoDB} from './db/connectMongoDB.js';
 import notesRoutes from './routes/notesRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+
+import {authenticate} from './middleware/authenticate.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
@@ -20,7 +23,9 @@ app.get('/', (req, res) => {
   res.status(200).json({ message: 'Hello, World!' });
 });
 
+app.use(authenticate);
 app.use(notesRoutes); 
+app.use(authRoutes);
 
 app.use(notFoundHandler);
 
