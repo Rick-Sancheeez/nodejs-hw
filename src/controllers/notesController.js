@@ -8,7 +8,7 @@ export const getAllNotes = async (req, res) => {
     const skip = (page - 1) * perPage;
     
     const filter = {};
-    filter.userID = req.user._id;
+    filter.userId = req.user._id;
     if (tag) {
         filter.tag = tag;
     }
@@ -34,7 +34,7 @@ export const getNoteById = async (req, res) => {
     const {noteId} = req.params;
     const note = await Note.findOne({
         _id: noteId,
-        userID: req.user._id,
+        userId: req.user._id,
     });
 
     if(!note) {
@@ -47,7 +47,7 @@ export const getNoteById = async (req, res) => {
 export const createNote = async (req, res) => {
     const note = await Note.create({
         ...req.body,
-        userID: req.user._id,
+        userId: req.user._id,
     });
     res.status(201).json(note);
 };
@@ -57,7 +57,7 @@ export const deleteNote = async (req, res) => {
     const {noteId} = req.params;
     const note = await Note.findOneAndDelete({
         _id: noteId,
-        userID: req.user._id,
+        userId: req.user._id,
     });
 
     if(!note) {
@@ -69,7 +69,7 @@ export const deleteNote = async (req, res) => {
 
 export const updateNote = async (req, res) => {
     const {noteId} = req.params;
-    const note = await Note.findOneAndUpdate({_id: noteId, userID: req.user._id},
+    const note = await Note.findOneAndUpdate({_id: noteId, userId: req.user._id},
         req.body,
         {new: true},
     );

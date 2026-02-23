@@ -3,6 +3,8 @@ import { celebrate } from 'celebrate';
 
 import { getAllNotes, getNoteById, createNote, deleteNote, updateNote} from "../controllers/notesController.js";
 
+import {authenticate} from '../middleware/authenticate.js';
+
 import {
   getAllNotesSchema,
   noteIdSchema,
@@ -13,6 +15,8 @@ import {
 
 
 const notesRoutes = Router();
+
+notesRoutes.use(authenticate);
 
 notesRoutes.get('/notes', celebrate(getAllNotesSchema), getAllNotes);
 
