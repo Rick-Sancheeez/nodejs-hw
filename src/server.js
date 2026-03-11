@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import {connectMongoDB} from './db/connectMongoDB.js';
 import notesRoutes from './routes/notesRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 //import {authenticate} from './middleware/authenticate.js';
 import { errorHandler } from './middleware/errorHandler.js';
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
 //app.use('/notes', authenticate);
 app.use(notesRoutes); 
 app.use(authRoutes);
+app.use(userRoutes);
 
 app.use(notFoundHandler);
 
